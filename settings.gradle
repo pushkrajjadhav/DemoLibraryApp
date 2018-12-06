@@ -1,1 +1,1 @@
-include ':app', ':rssfeedlibrary'
+include ':app', ':VidgyorLib'

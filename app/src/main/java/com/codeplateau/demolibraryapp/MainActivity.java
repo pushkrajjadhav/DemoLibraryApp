@@ -1,41 +1,36 @@
 package com.codeplateau.demolibraryapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
 
-import com.codeplateau.rssfeedlibrary.ChannelProvider;
+import com.codeplateau.vidgyor.LiveTvFullScreenActivity;
+import com.codeplateau.vidgyor.Vidgyor;
 
 public class MainActivity extends AppCompatActivity {
-
-    Button btnValidator;
-    private static WebView webview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        webview = (WebView) findViewById(R.id.webview);
+        Vidgyor.init(this);
 
-        LoadWebView();
-    }
+        Button btnLiveTV = (Button) findViewById(R.id.btnLiveTV);
 
-    public void LoadWebView(){
+        btnLiveTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        webview.setWebViewClient(new WebViewClient());
-        webview.getSettings().setJavaScriptEnabled(true);
-        webview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        webview.getSettings().setPluginState(WebSettings.PluginState.ON);
-        webview.getSettings().setMediaPlaybackRequiresUserGesture(false);
-        webview.setWebChromeClient(new WebChromeClient());
+                Intent intent = new Intent(getApplicationContext(), LiveTvFullScreenActivity.class);
+                intent.putExtra("ChannelName", "asianet");
+                startActivity(intent);
+            }
+        });
 
-        ChannelProvider.setUrl("http://vidgyor.com/live/midroll/html/indiatv.html");
-        ChannelProvider.setChannelName("asianet");
+
     }
 }

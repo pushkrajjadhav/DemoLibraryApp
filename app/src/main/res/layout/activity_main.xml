@@ -9,10 +9,11 @@
     android:layout_gravity="center"
     android:gravity="center">
 
-    <WebView
-        android:id="@+id/webview"
+    <Button
+        android:id="@+id/btnLiveTV"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
-    </WebView>
+        android:layout_height="wrap_content"
+        android:text="Live TV"
+        android:layout_margin="10dp"/>
 
 </LinearLayout>
